@@ -1,7 +1,7 @@
 package core;
 public class Parameter 
 {
-	public static String version = "Version 0.41 - 12.02.2024";
+	public static String version = "Version 0.42 - 09.11.2026";
 	public static String license = "GPL Version 2 and 3";
 	public static String iniDatei = "IconEditor.ini";
 	public static int iconWidth = 16;

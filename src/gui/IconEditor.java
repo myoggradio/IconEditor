@@ -576,6 +576,15 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 		{
 			aktiveOperation = new DrawLine();
 			aktiveOperation.pushColor(aktiveColor);
+			PixelDialog pd1 = new PixelDialog("Erstes Pixel");
+			Pixel p1 = pd1.getPixel();
+			if (p1 != null) Protokol.write("erstes Pixel erhalten" );
+			PixelDialog pd2 = new PixelDialog("Zweites Pixel");
+			Pixel p2 = pd2.getPixel();
+			if (p2 != null) Protokol.write("zweites Pixel erhalten" );
+			aktiveOperation.pushPixel(p1);
+			aktiveOperation.pushPixel(p2);
+			testOperation();
 		}
 		if (quelle == m211 || quelle == buttSwitchColor)
 		{

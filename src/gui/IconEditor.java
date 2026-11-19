@@ -40,10 +40,12 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 	private JMenuItem m75 = new JMenuItem("toggleMalen");
 	private JMenuItem m11 = new JMenuItem("Save...");
 	private JMenuItem m12 = new JMenuItem("Load...");
+	private JMenuItem m15 = new JMenuItem("Print...");
 	private JMenuItem m13 = new JMenuItem("New...");
 	private JMenuItem m14 = new JMenuItem("Exit");
 	private JMenuItem m21 = new JMenuItem("SetPixel");
 	private JMenuItem m22 = new JMenuItem("FillBox");
+	private JMenuItem m22a = new JMenuItem("FillBackground");
 	private JMenuItem m23 = new JMenuItem("FillCircle");
 	private JMenuItem m24 = new JMenuItem("Rotate");
 	private JMenuItem m25 = new JMenuItem("FillEllipse");
@@ -114,10 +116,12 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 		init();
 		m11.addActionListener(this);
 		m12.addActionListener(this);
+		m15.addActionListener(this);
 		m13.addActionListener(this);
 		m14.addActionListener(this);
 		m21.addActionListener(this);
 		m22.addActionListener(this);
+		m22a.addActionListener(this);
 		m23.addActionListener(this);
 		m24.addActionListener(this);
 		m25.addActionListener(this);
@@ -162,10 +166,12 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 		m75.addActionListener(this);
 		m1.add(m13);
 		m1.add(m11);
+		m1.add(m15);
 		m1.add(m12);
 		m1.add(m14);
 		m2.add(m21);
 		m2.add(m22);
+		m2.add(m22a);
 		m2.add(m28);
 		m2.add(m23);
 		m2.add(m25);
@@ -526,6 +532,10 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 				System.exit(0);
 			}
 		}
+		if (quelle == m15) // print
+		{
+			ip.print(ip.getGraphics());
+		}
 		if (quelle == m21 || quelle == buttSetPixel)
 		{
 			int dicke = getAnzahl("Bitte Dicke vorgeben",1);
@@ -535,6 +545,11 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 		if (quelle == m22 || quelle == buttFillBox)
 		{
 			aktiveOperation = new FillBox();
+			aktiveOperation.pushColor(aktiveColor);
+		}
+		if (quelle == m22a)
+		{
+			aktiveOperation = new FillBackground();
 			aktiveOperation.pushColor(aktiveColor);
 		}
 		if (quelle == m23 || quelle == buttFillCircle)

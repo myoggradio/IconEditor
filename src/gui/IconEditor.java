@@ -12,7 +12,7 @@ import java.util.*;
 public class IconEditor extends Menu implements PixelListener,ColorListener
 {
 	private static final long serialVersionUID = 1L;
-	private Pixel lastPixel = null;
+	private Pixel lastPixel = Factory.getPixel();
 	int lastPixelDX = 0;
 	int lastPixelDY = 0;
 	private ArrayList<IconListener> listener = new ArrayList<IconListener>();
@@ -436,6 +436,7 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 		lastPixel = pixel;
 		lastPixelDX = 0;
 		lastPixelDY = 0;
+		Global.setPixel(pixel);
 		if (pickColor)
 		{
 			Color c = pixel.getColor();
@@ -541,6 +542,15 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 			int dicke = getAnzahl("Bitte Dicke vorgeben",1);
 			aktiveOperation = new SetPixel(dicke);
 			aktiveOperation.pushColor(aktiveColor);
+			PixelDialog pd1 = new PixelDialog("Set Pixel");
+			Pixel p1 = pd1.getPixel();
+			if (p1 != null) 
+			{
+				Global.setPixel(p1);
+				Protokol.write("Pixel erhalten" );
+			}
+			aktiveOperation.pushPixel(p1);
+			testOperation();
 		}
 		if (quelle == m22 || quelle == buttFillBox)
 		{
@@ -593,10 +603,18 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 			aktiveOperation.pushColor(aktiveColor);
 			PixelDialog pd1 = new PixelDialog("Erstes Pixel");
 			Pixel p1 = pd1.getPixel();
-			if (p1 != null) Protokol.write("erstes Pixel erhalten" );
+			if (p1 != null)
+			{
+				Global.setPixel(p1);
+				Protokol.write("erstes Pixel erhalten" );
+			}
 			PixelDialog pd2 = new PixelDialog("Zweites Pixel");
 			Pixel p2 = pd2.getPixel();
-			if (p2 != null) Protokol.write("zweites Pixel erhalten" );
+			if (p2 != null)
+			{
+				Global.setPixel(p2);
+				Protokol.write("zweites Pixel erhalten" );
+			}
 			aktiveOperation.pushPixel(p1);
 			aktiveOperation.pushPixel(p2);
 			testOperation();
@@ -771,6 +789,7 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 		}
 		if (quelle == m71)
 		{
+			lastPixel = Global.getPixel();
 			if (lastPixel != null)
 			{
 				int anzahl = getAnzahl("Bitte Laenge vorgeben",1);
@@ -782,12 +801,16 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 					neuesPixel.setY(lastPixelDY + lastPixel.getY());
 					neuesPixel.setColor(lastPixel.getColor());
 					icon.setPixel(neuesPixel);
+					Global.setPixel(neuesPixel);
 				}
+				lastPixelDX = 0;
+				lastPixelDY = 0;
 				init();
 			}
 		}
 		if (quelle == m72)
 		{
+			lastPixel = Global.getPixel();
 			if (lastPixel != null)
 			{
 				int anzahl = getAnzahl("Bitte Laenge vorgeben",1);
@@ -799,12 +822,16 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 					neuesPixel.setY(lastPixelDY + lastPixel.getY());
 					neuesPixel.setColor(lastPixel.getColor());
 					icon.setPixel(neuesPixel);
+					Global.setPixel(neuesPixel);
 				}
+				lastPixelDX = 0;
+				lastPixelDY = 0;
 				init();
 			}
 		}
 		if (quelle == m73)
 		{
+			lastPixel = Global.getPixel();
 			if (lastPixel != null)
 			{
 				int anzahl = getAnzahl("Bitte Laenge vorgeben",1);
@@ -816,12 +843,16 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 					neuesPixel.setY(lastPixelDY + lastPixel.getY());
 					neuesPixel.setColor(lastPixel.getColor());
 					icon.setPixel(neuesPixel);
+					Global.setPixel(neuesPixel);
 				}
+				lastPixelDX = 0;
+				lastPixelDY = 0;
 				init();
 			}
 		}
 		if (quelle == m74)
 		{
+			lastPixel = Global.getPixel();
 			if (lastPixel != null)
 			{
 				int anzahl = getAnzahl("Bitte Laenge vorgeben",1);
@@ -833,7 +864,10 @@ public class IconEditor extends Menu implements PixelListener,ColorListener
 					neuesPixel.setY(lastPixelDY + lastPixel.getY());
 					neuesPixel.setColor(lastPixel.getColor());
 					icon.setPixel(neuesPixel);
+					Global.setPixel(neuesPixel);
 				}
+				lastPixelDX = 0;
+				lastPixelDY = 0;
 				init();
 			}
 		}

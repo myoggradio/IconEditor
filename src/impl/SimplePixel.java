@@ -3,8 +3,8 @@ import java.awt.Color;
 import core.*;
 public class SimplePixel implements Pixel
 {
-	private int x = 0;
-	private int y = 0;
+	private int x = 1;
+	private int y = 1;
 	private Color c = Color.red;
 	public Color getColor() 
 	{
